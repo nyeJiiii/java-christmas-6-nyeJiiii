@@ -11,7 +11,7 @@ public class Date {
     
     public Date(String stringDate) {
         int intDate = parseInt(stringDate);
-        validateDate(intDate);
+        validateRange(intDate);
         this.date = intDate;
     }
     
@@ -23,7 +23,7 @@ public class Date {
         }
     }
     
-    private void validateDate(int input) {
+    private void validateRange(int input) {
         if (!(START_OF_DATE <= input && input <= END_OF_DATE)) {
             throw new IllegalArgumentException(WRONG_DATE);
         }

@@ -9,5 +9,7 @@ public class Application {
         
         printHello();
         christmasEvent.getDateFromConsole();
+        christmasEvent.getOrderFromConsole();
+        
     }
 }
