@@ -1,28 +1,17 @@
 package christmas;
 
-import static christmas.view.InputView.readDate;
+import static christmas.exception.ExceptionCatcher.catchExceptionWithNewDate;
 
 import christmas.domain.Date;
-import christmas.domain.User;
 
 public class ChristmasEvent {
     
-    User user = new User();
+    Date date = null;
     
-    public void getRightDate() {
-        boolean success;
+    public void getDateFromConsole() {
         do {
-            success = getDate();
-        } while (!success);
+            date = catchExceptionWithNewDate();
+        } while (date == null);
     }
     
-    private boolean getDate() {
-        try {
-            user.setDate(new Date(readDate()));
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
 }

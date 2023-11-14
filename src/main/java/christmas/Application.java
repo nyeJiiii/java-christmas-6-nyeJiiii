@@ -8,6 +8,6 @@ public class Application {
         ChristmasEvent christmasEvent = new ChristmasEvent();
         
         printHello();
-        christmasEvent.getRightDate();
+        christmasEvent.getDateFromConsole();
     }
 }
