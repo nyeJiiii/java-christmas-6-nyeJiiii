@@ -119,9 +119,9 @@ public class Order {
     
     @Override
     public String toString() {
-        return "Order{" +
-                "order=" + order +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        order.forEach((menu, count) -> sb.append(menu.name()).append(" ").append(count).append("개\n"));
+        return sb.toString();
     }
     
 }

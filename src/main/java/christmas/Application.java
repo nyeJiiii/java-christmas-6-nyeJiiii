@@ -11,5 +11,7 @@ public class Application {
         christmasEvent.getDateFromConsole();
         christmasEvent.getOrderFromConsole();
         
+        christmasEvent.showOrders();
+        
     }
 }

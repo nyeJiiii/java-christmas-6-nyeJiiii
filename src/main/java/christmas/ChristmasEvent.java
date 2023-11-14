@@ -2,6 +2,7 @@ package christmas;
 
 import static christmas.exception.ExceptionCatcher.catchExceptionWithNewDate;
 import static christmas.exception.ExceptionCatcher.catchExceptionWithNewOrder;
+import static christmas.view.OutputView.printOrder;
 
 import christmas.domain.Date;
 import christmas.domain.Order;
@@ -22,4 +23,10 @@ public class ChristmasEvent {
             order = catchExceptionWithNewOrder();
         } while (order == null);
     }
+    
+    public void showOrders() {
+        printOrder();
+        System.out.println(order);
+    }
+    
 }
