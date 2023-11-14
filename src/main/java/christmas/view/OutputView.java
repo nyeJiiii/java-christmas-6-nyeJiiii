@@ -12,4 +12,8 @@ public class OutputView {
     public static void printCost() {
         System.out.println("<할인 전 총주문 금액>");
     }
+    
+    public static void printGift() {
+        System.out.println("\n<증정 메뉴>");
+    }
 }
