@@ -14,6 +14,7 @@ public class Order {
     private static final int PAIR_OF_ORDER = 2;
     private static final int PART_OF_ORDER_NAME = 0;
     private static final int PART_OF_ORDER_COUNT = 1;
+    private static final int MININUM_COUNT_OF_ORDER = 1;
     private HashMap<Menu, Integer> order;
     
     public Order(String stringOrder) {
@@ -51,17 +52,37 @@ public class Order {
     }
     
     private HashMap<Menu, Integer> getOrders(Stream<String[]> input) {
-        return input.collect(
-                () -> new HashMap<>(),
+        HashMap<Menu, Integer> orderMap = input.collect(
+                HashMap::new,
                 (map, parts) -> {
                     checkLengthOfParts(parts);
-                    map.put(
-                            Menu.valueOf(parts[PART_OF_ORDER_NAME].trim()),
-                            Integer.parseInt(parts[PART_OF_ORDER_COUNT].trim())
-                    );
+                    putOrdersToMap(map, parts);
                 },
                 HashMap::putAll
         );
+        return orderMap;
+    }
+    
+    private static void putOrdersToMap(HashMap<Menu, Integer> map, String[] parts) {
+        Menu menu = Menu.valueOf(parts[PART_OF_ORDER_NAME].trim());
+        checkDuplicatedMenu(map.containsKey(menu));
+        
+        int count = Integer.parseInt(parts[PART_OF_ORDER_COUNT].trim());
+        checkIsOverZero(count < MININUM_COUNT_OF_ORDER);
+        
+        map.put(menu, count);
+    }
+    
+    private static void checkIsOverZero(boolean count) {
+        if (count) {
+            throw new IllegalArgumentException(WRONG_ORDER);
+        }
+    }
+    
+    private static void checkDuplicatedMenu(boolean map) {
+        if (map) {
+            throw new IllegalArgumentException(WRONG_ORDER);
+        }
     }
     
     private static void checkLengthOfParts(String[] parts) {
