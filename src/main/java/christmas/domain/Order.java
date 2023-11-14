@@ -1,8 +1,11 @@
 package christmas.domain;
 
+import static christmas.exception.ErrorMessage.CANNOT_ORDER_ONLY_DRINK;
+import static christmas.exception.ErrorMessage.OVER_MAXIMUN_COUNT_OF_ORDER;
 import static christmas.exception.ErrorMessage.WRONG_ORDER;
 
 import christmas.util.Menu;
+import christmas.util.MenuType;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.Stream;
@@ -15,12 +18,19 @@ public class Order {
     private static final int PART_OF_ORDER_NAME = 0;
     private static final int PART_OF_ORDER_COUNT = 1;
     private static final int MININUM_COUNT_OF_ORDER = 1;
+    private static final int MAXIMUN_COUNT_OF_ORDER = 20;
+    
     private HashMap<Menu, Integer> order;
     
     public Order(String stringOrder) {
         validateEnd(stringOrder, FIRST_ORDER_SPLITER);
+        
         Stream<String[]> splittedOrders = splitOrder(stringOrder);
-        this.order = validateOrders(splittedOrders);
+        HashMap<Menu, Integer> orders = validateOrders(splittedOrders);
+        
+        validateIsAllDrink(orders);
+        validateMaximumTotalCount(orders);
+        this.order = orders;
     }
     
     private static void validateEnd(String order, String spliter) {
@@ -55,7 +65,7 @@ public class Order {
         HashMap<Menu, Integer> orderMap = input.collect(
                 HashMap::new,
                 (map, parts) -> {
-                    checkLengthOfParts(parts);
+                    validateLengthOfParts(parts);
                     putOrdersToMap(map, parts);
                 },
                 HashMap::putAll
@@ -65,29 +75,45 @@ public class Order {
     
     private static void putOrdersToMap(HashMap<Menu, Integer> map, String[] parts) {
         Menu menu = Menu.valueOf(parts[PART_OF_ORDER_NAME].trim());
-        checkDuplicatedMenu(map.containsKey(menu));
+        validateDuplicatedMenu(map.containsKey(menu));
         
         int count = Integer.parseInt(parts[PART_OF_ORDER_COUNT].trim());
-        checkIsOverZero(count < MININUM_COUNT_OF_ORDER);
+        validateIsOverZero(count < MININUM_COUNT_OF_ORDER);
         
         map.put(menu, count);
     }
     
-    private static void checkIsOverZero(boolean count) {
+    private static void validateIsOverZero(boolean count) {
         if (count) {
             throw new IllegalArgumentException(WRONG_ORDER);
         }
     }
     
-    private static void checkDuplicatedMenu(boolean map) {
+    private static void validateDuplicatedMenu(boolean map) {
         if (map) {
             throw new IllegalArgumentException(WRONG_ORDER);
         }
     }
     
-    private static void checkLengthOfParts(String[] parts) {
+    private static void validateLengthOfParts(String[] parts) {
         if (parts.length != PAIR_OF_ORDER) {
             throw new IllegalArgumentException(WRONG_ORDER);
+        }
+    }
+    
+    private static void validateIsAllDrink(HashMap<Menu, Integer> orders) {
+        if (orders.keySet().stream().allMatch(menu -> menu.getMenuType() == MenuType.음료)) {
+            throw new IllegalArgumentException(CANNOT_ORDER_ONLY_DRINK);
+        }
+    }
+    
+    private static void validateMaximumTotalCount(HashMap<Menu, Integer> orders) {
+        int sumOfPrices = orders.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+        
+        if (sumOfPrices > MAXIMUN_COUNT_OF_ORDER) {
+            throw new IllegalArgumentException(OVER_MAXIMUN_COUNT_OF_ORDER);
         }
     }
     
