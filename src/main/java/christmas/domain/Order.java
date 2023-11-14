@@ -108,13 +108,19 @@ public class Order {
     }
     
     private static void validateMaximumTotalCount(HashMap<Menu, Integer> orders) {
-        int sumOfPrices = orders.values().stream()
+        int totalCountOfOrder = orders.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
         
-        if (sumOfPrices > MAXIMUN_COUNT_OF_ORDER) {
+        if (totalCountOfOrder > MAXIMUN_COUNT_OF_ORDER) {
             throw new IllegalArgumentException(OVER_MAXIMUN_COUNT_OF_ORDER);
         }
+    }
+    
+    public int calculateTotalPrice() {
+        return order.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
     }
     
     @Override

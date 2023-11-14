@@ -2,6 +2,7 @@ package christmas;
 
 import static christmas.exception.ExceptionCatcher.catchExceptionWithNewDate;
 import static christmas.exception.ExceptionCatcher.catchExceptionWithNewOrder;
+import static christmas.view.OutputView.printCost;
 import static christmas.view.OutputView.printOrder;
 
 import christmas.domain.Date;
@@ -27,6 +28,11 @@ public class ChristmasEvent {
     public void showOrders() {
         printOrder();
         System.out.println(order);
+    }
+    
+    public void showCost() {
+        printCost();
+        System.out.printf("%,d원%n", order.calculateTotalPrice());
     }
     
 }

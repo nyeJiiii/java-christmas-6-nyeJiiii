@@ -8,4 +8,8 @@ public class OutputView {
     public static void printOrder() {
         System.out.println("\n<주문 메뉴>");
     }
+    
+    public static void printCost() {
+        System.out.println("<할인 전 총주문 금액>");
+    }
 }

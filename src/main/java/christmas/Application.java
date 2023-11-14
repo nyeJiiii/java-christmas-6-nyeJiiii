@@ -12,6 +12,7 @@ public class Application {
         christmasEvent.getOrderFromConsole();
         
         christmasEvent.showOrders();
+        christmasEvent.showCost();
         
     }
 }
