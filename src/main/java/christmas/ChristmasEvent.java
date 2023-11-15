@@ -1,8 +1,10 @@
 package christmas;
 
+import static christmas.domain.Badge.returnBadge;
 import static christmas.domain.Discount.MINIMUM_COST_FOR_BENEFIT;
 import static christmas.exception.ExceptionCatcher.catchExceptionWithNewDate;
 import static christmas.exception.ExceptionCatcher.catchExceptionWithNewOrder;
+import static christmas.view.OutputView.printBadge;
 import static christmas.view.OutputView.printBenefit;
 import static christmas.view.OutputView.printCost;
 import static christmas.view.OutputView.printCostAfterDiscount;
@@ -83,6 +85,11 @@ public class ChristmasEvent {
         printCostAfterDiscount();
         int costAfterDiscount = cost + totalBenefit;
         System.out.println(String.format("%,d원\n", costAfterDiscount));
+    }
+    
+    public void showBadge() {
+        printBadge();
+        System.out.println(returnBadge(-totalBenefit));
     }
     
 }

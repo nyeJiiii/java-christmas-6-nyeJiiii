@@ -28,4 +28,8 @@ public class OutputView {
     public static void printCostAfterDiscount() {
         System.out.println("<할인 후 예상 결제 금액>");
     }
+    
+    public static void printBadge() {
+        System.out.println("<12월 이벤트 배지>");
+    }
 }

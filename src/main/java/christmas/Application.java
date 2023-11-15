@@ -18,5 +18,6 @@ public class Application {
         
         christmasEvent.showTotalBenefit();
         christmasEvent.showCostAfterDiscount();
+        christmasEvent.showBadge();
     }
 }
