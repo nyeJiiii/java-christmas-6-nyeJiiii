@@ -1,7 +1,7 @@
 package christmas.domain;
 
 import static christmas.exception.ErrorMessage.CANNOT_ORDER_ONLY_DRINK;
-import static christmas.exception.ErrorMessage.OVER_MAXIMUN_COUNT_OF_ORDER;
+import static christmas.exception.ErrorMessage.OVER_MAXIMUM_COUNT_OF_ORDER;
 import static christmas.exception.ErrorMessage.WRONG_ORDER;
 
 import christmas.util.Menu;
@@ -113,7 +113,7 @@ public class Order {
                 .sum();
         
         if (totalCountOfOrder > MAXIMUN_COUNT_OF_ORDER) {
-            throw new IllegalArgumentException(OVER_MAXIMUN_COUNT_OF_ORDER);
+            throw new IllegalArgumentException(OVER_MAXIMUM_COUNT_OF_ORDER);
         }
     }
     

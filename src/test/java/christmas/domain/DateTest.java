@@ -13,27 +13,27 @@ class DateTest {
     @ParameterizedTest
     @ValueSource(strings = {"k", "1 ", "*"})
     @DisplayName("방문날짜: 숫자가 아닐 때 예외")
-    void test_newDate_1(String numbers) {
+    void test_newDate_1(String date) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Date((numbers)))
+                .isThrownBy(() -> new Date(date))
                 .withMessage(WRONG_DATE);
     }
     
     @ParameterizedTest
     @ValueSource(strings = {"0", "32"})
     @DisplayName("방문날짜: 1~31 범위의 숫자가 아닐 때")
-    void test_newDate_2(String numbers) {
+    void test_newDate_2(String date) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Date((numbers)))
+                .isThrownBy(() -> new Date(date))
                 .withMessage(WRONG_DATE);
     }
     
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("방문날짜: Null 또는 Empty 일 때`")
-    void test_newDate_3(String numbers) {
+    void test_newDate_3(String date) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Date((numbers)))
+                .isThrownBy(() -> new Date(date))
                 .withMessage(WRONG_DATE);
     }
 }
