@@ -54,5 +54,4 @@ public class Date {
     public boolean beforeChristmas() {
         return date <= CHRISTMAS;
     }
-    
 }

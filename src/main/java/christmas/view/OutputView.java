@@ -20,4 +20,8 @@ public class OutputView {
     public static void printBenefit() {
         System.out.println("\n<혜택 내역>");
     }
+    
+    public static void printTotalBenefit() {
+        System.out.println("\n<총혜택 금액>");
+    }
 }

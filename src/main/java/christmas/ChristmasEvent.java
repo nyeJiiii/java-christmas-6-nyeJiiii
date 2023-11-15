@@ -7,6 +7,7 @@ import static christmas.view.OutputView.printBenefit;
 import static christmas.view.OutputView.printCost;
 import static christmas.view.OutputView.printGift;
 import static christmas.view.OutputView.printOrder;
+import static christmas.view.OutputView.printTotalBenefit;
 
 import christmas.domain.Date;
 import christmas.domain.Discount;
@@ -20,6 +21,7 @@ public class ChristmasEvent {
     Date date = null;
     Order order = null;
     GiftMenu giftMenu = null;
+    Discount discount = null;
     
     public void getDateFromConsole() {
         do {
@@ -55,9 +57,22 @@ public class ChristmasEvent {
             System.out.println(NULL);
         }
         if (order.calculateTotalPrice() >= MINIMUM_COST_FOR_BENEFIT) {
-            System.out.print(new Discount(date, order));
-            System.out.println(giftMenu.printCost());
+            discount = new Discount(date, order);
+            System.out.print(discount);
+            System.out.print(giftMenu.printCost());
         }
+    }
+    
+    public void showTotalBenefit() {
+        printTotalBenefit();
+        int totalBenefit = 0;
+        if (giftMenu != null) {
+            totalBenefit += giftMenu.returnDiscountPrice();
+        }
+        if (discount != null) {
+            totalBenefit += discount.getTotalBenefit();
+        }
+        System.out.println(String.format("%,d원\n", totalBenefit));
     }
     
 }

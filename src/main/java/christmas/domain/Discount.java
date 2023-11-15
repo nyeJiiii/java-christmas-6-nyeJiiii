@@ -25,6 +25,23 @@ public class Discount {
         }
     }
     
+    public int getTotalBenefit() {
+        int sum = 0;
+        if (chistmasDiscount != null) {
+            sum += chistmasDiscount.getCost();
+        }
+        if (weekdayDiscount != null) {
+            sum += weekdayDiscount.getCost();
+        }
+        if (weekendDiscount != null) {
+            sum += weekendDiscount.getCost();
+        }
+        if (specialDiscount != null) {
+            sum += specialDiscount.getCost();
+        }
+        return sum;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

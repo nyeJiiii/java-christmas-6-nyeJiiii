@@ -16,5 +16,7 @@ public class Application {
         christmasEvent.showGift();
         christmasEvent.showBenefit();
         
+        christmasEvent.showTotalBenefit();
+        
     }
 }

@@ -12,6 +12,10 @@ public class WeekendDiscount {
         this.cost = order.countMenuType(MenuType.메인) * DISCOUNT;
     }
     
+    public int getCost() {
+        return cost;
+    }
+    
     @Override
     public String toString() {
         return String.format("주말 할인: %,d원\n", cost);

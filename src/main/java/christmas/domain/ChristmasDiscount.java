@@ -14,6 +14,10 @@ public class ChristmasDiscount {
         }
     }
     
+    public int getCost() {
+        return cost;
+    }
+    
     @Override
     public String toString() {
         return String.format("크리스마스 디데이 할인: %,d원\n", cost);
