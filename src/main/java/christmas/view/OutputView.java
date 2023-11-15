@@ -24,4 +24,8 @@ public class OutputView {
     public static void printTotalBenefit() {
         System.out.println("\n<총혜택 금액>");
     }
+    
+    public static void printCostAfterDiscount() {
+        System.out.println("<할인 후 예상 결제 금액>");
+    }
 }
