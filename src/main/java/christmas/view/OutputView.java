@@ -16,4 +16,8 @@ public class OutputView {
     public static void printGift() {
         System.out.println("\n<증정 메뉴>");
     }
+    
+    public static void printBenefit() {
+        System.out.println("\n<혜택 내역>");
+    }
 }

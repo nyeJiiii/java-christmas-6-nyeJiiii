@@ -123,6 +123,12 @@ public class Order {
                 .sum();
     }
     
+    public int countMenuType(MenuType menuType) {
+        return (int) order.keySet().stream()
+                .filter(menu -> menu.getMenuType() == menuType)
+                .count();
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
