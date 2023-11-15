@@ -4,7 +4,6 @@ import static christmas.view.OutputView.printHello;
 
 public class Application {
     public static void main(String[] args) {
-        
         ChristmasEvent christmasEvent = new ChristmasEvent();
         
         printHello();
@@ -15,7 +14,6 @@ public class Application {
         christmasEvent.showCost();
         christmasEvent.showGift();
         christmasEvent.showBenefit();
-        
         christmasEvent.showTotalBenefit();
         christmasEvent.showCostAfterDiscount();
         christmasEvent.showBadge();
